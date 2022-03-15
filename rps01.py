@@ -1,14 +1,9 @@
-from importlib.resources import path
 import platform
 import random
-from unittest import result
 import cv2
-from shutil import move
 from keras.models import load_model
 import numpy as np
 import tensorflow as tf
-
-
 
 
 def calculate_winner():
@@ -17,7 +12,7 @@ def calculate_winner():
     cap = cv2.VideoCapture(0)
     data = np.ndarray(shape=(1, 224, 224, 3), dtype=np.float32)
     cap = cv2.VideoCapture(0)
-    move2 = random.choice(['rock','paper','scissors'])
+    computer = random.choice(['rock','paper','scissors'])
     
     while True:
         
@@ -32,61 +27,58 @@ def calculate_winner():
         cv2.imshow('frame', frame)
         
         if prediction[0][0] > 0.5:
-            print('nothing')
-            move1 = 'nothing'
+            print('User: nothing')
+            user = 'nothing'
+            computer = 'nothing'
             
         elif prediction[0][1] > 0.5:
-            print('rock')
-            move1 = 'rock'
-           
-            if move1 == "rock" and move2 == "scissors":
-                # if move2 == "scissors":
-                    result = "User"
-                    print("The winner is " + result)
+            print('User: rock')
+            user = 'rock'           
+            if user == "rock" and computer == "scissors":
+                result = "User"
+                print("The winner is " + result)
 
-            elif move2 == "paper":
+            elif user == "rock" and computer == "paper":
                 result =  "Computer"
                 print("The winner is " + result)
                 
             else: 
-                move2 == "rock"
+                user == "rock" and computer == "rock"
                 result = "Tie"
                 print("The winner is " + result)
 
             
         elif prediction[0][2] > 0.5:
-            print('paper')
-            move1 = 'paper'
-            if move1 == "paper":
-                if move2 == "rock":
+            print('User: paper')
+            user = 'paper'
+            if user == "paper" and computer == "rock":
                     result =  "User"
                     print("The winner is " + result)
 
-                elif move2 == "scissors":
-                     result =  "Computer"
-                     print("The winner is " + result)
-                     
-                else: 
-                    move2 == "paper"
-                    result = "Tie"
-                    print("The winner is " + result)
-            
-        elif prediction[0][3] > 0.5:
-            print('scissors')
-            move1 = 'scissors'
-            if move1 == "scissors":
-                if move2 == "paper":
-                    result =  "User"
-                    print("The winner is " + result)
-
-                elif move2 == "rock":
+            elif user == "paper" and computer == "scissors":
                     result =  "Computer"
                     print("The winner is " + result)
+                     
+            else: 
+                user == "paper" and computer == "paper"
+                result = "Tie"
+                print("The winner is " + result)
+            
+        elif prediction[0][3] > 0.5:
+            print('User: scissors')
+            user = 'scissors'
+            if user == "scissors" and computer == "paper":
+                result =  "User"
+                print("The winner is " + result)
+
+            elif user == "scissors" and computer == "rock":
+                result =  "Computer"
+                print("The winner is " + result)
                     
-                else: 
-                    move2 == "scissors"
-                    result = "Tie"
-                    print("The winner is " + result)
+            else: 
+                user == "scissors" and computer == "scissors"
+                result = "Tie"
+                print("The winner is " + result)
 
             
 
