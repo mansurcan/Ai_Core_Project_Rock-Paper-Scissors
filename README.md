@@ -10,3 +10,8 @@ Play Rock Paper Scissors Game against computer by using camera.
 - The logic of the game has been added to the as a function. 
 
 - The while loop which has the prediction results were place in the function which is called calculate winner.
+
+- Countdown (display it on the cam)
+
+- Give 3 lives
+
